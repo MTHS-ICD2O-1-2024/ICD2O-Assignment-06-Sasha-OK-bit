@@ -13,15 +13,18 @@
     })
 }
 
+
+
 async function getData() {
   try {
-    const url = "https://pokeapi.co/api/v2/pokemon/ditto"
+    const randomId = Math.floor(Math.random() * 1010) + 1;
+    const url = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
     const infoJSON = await fetch(url);
     const JSONdata = await infoJSON.json();
 
-    const pokemon = JSONdata.main.temp;
+    const pokemonName = JSONdata.name;
 
-    document.getElementById("answer1").innerHTML = pokemon.toFixed(0);
+    document.getElementById("answer1").innerHTML = 'Random pokemon:' + pokemonName;
   }catch (error) {
     console.log(error);
   }
